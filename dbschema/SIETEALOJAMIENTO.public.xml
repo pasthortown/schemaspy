@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="SIETEALOJAMIENTO" schema="public" type="PostgreSQL - 11.2 (Ubuntu 11.2-1.pgdg18.04+1)">
+   <tables>
+      <table name="capacities" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('capacities_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="capacity_id" foreignKey="rack_prices_capacity_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="rack_prices"/>
+            <child column="capacity_id" foreignKey="register_establishment_capacities_capacity_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_establishment_capacities"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="name" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="code" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="father_code" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="factor" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="capacities_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="complementary_capacities" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('complementary_capacities_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="complementary_capacity_id" foreignKey="register_complementary_capacity_complementary_capacity_id_forei" implied="false" onDeleteCascade="true" schema="public" table="register_complementary_capacity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="quantity_capacity" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="quantity_personal_space" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="complementary_capacity_type_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="complementary_capacities_complementary_capacity_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="complementary_capacity_types"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="complementary_capacities_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="complementary_capacity_types" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('complementary_capacity_types_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="complementary_capacity_type_id" foreignKey="complementary_capacities_complementary_capacity_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="complementary_capacities"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="name" nullable="true" remarks="" size="100" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="complementary_capacity_types_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="establishment_service_offers" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('establishment_service_offers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="establishment_service_offer_id" foreignKey="register_establishment_service_offer_establishment_service_offe" implied="false" onDeleteCascade="true" schema="public" table="register_establishment_service_offer"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="fullfill" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="4" name="service_name_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="establishment_service_offers_service_name_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="service_names"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="establishment_service_offers_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="establishments" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('establishments_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="establishment_id" foreignKey="registers_establishment_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="registers"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="establishments_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="migrations" numRows="17" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('migrations_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="migration" nullable="false" remarks="" size="255" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="batch" nullable="false" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="migrations_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="rack_price_classifications" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('rack_price_classifications_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="rack_price_classification_id" foreignKey="rack_prices_rack_price_classification_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="rack_prices"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="name" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="code" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="father_code" nullable="true" remarks="" size="20" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="rack_price_classifications_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="rack_prices" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('rack_prices_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="rack_price_id" foreignKey="register_rack_price_rack_price_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_rack_price"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="17" id="3" name="price" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="0" id="4" name="capacity_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="rack_prices_capacity_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="capacities"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="rack_price_classification_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="rack_prices_rack_price_classification_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="rack_price_classifications"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="rack_prices_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="register_complementary_capacity" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('register_complementary_capacity_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="complementary_capacity_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_complementary_capacity_complementary_capacity_id_forei" implied="false" onDeleteCascade="true" schema="public" table="complementary_capacities"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="register_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_complementary_capacity_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="registers"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="register_complementary_capacity_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="register_establishment_capacities" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('register_establishment_capacities_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="register_establishment_capacity_id" foreignKey="register_register_establishment_capacity_register_establishment" implied="false" onDeleteCascade="true" schema="public" table="register_register_establishment_capacity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="quantity" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="capacity_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_establishment_capacities_capacity_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="capacities"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="register_establishment_capacities_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="register_establishment_service_offer" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('register_establishment_service_offer_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="establishment_service_offer_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_establishment_service_offer_establishment_service_offe" implied="false" onDeleteCascade="true" schema="public" table="establishment_service_offers"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="register_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_establishment_service_offer_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="registers"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="register_establishment_service_offer_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="register_rack_price" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('register_rack_price_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="rack_price_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_rack_price_rack_price_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="rack_prices"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="register_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_rack_price_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="registers"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="register_rack_price_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="register_register_establishment_capacity" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('register_register_establishment_capacity_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="register_establishment_capacity_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_register_establishment_capacity_register_establishment" implied="false" onDeleteCascade="true" schema="public" table="register_establishment_capacities"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="register_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_register_establishment_capacity_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="registers"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="register_register_establishment_capacity_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="register_states" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('register_states_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="justification" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="register_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_states_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="registers"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="state_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="register_states_state_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="states"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="register_states_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="register_types" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('register_types_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="register_type_id" foreignKey="registers_register_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="registers"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="register_types_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="registers" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('registers_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="register_id" foreignKey="register_complementary_capacity_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_complementary_capacity"/>
+            <child column="register_id" foreignKey="register_establishment_service_offer_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_establishment_service_offer"/>
+            <child column="register_id" foreignKey="register_rack_price_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_rack_price"/>
+            <child column="register_id" foreignKey="register_register_establishment_capacity_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_register_establishment_capacity"/>
+            <child column="register_id" foreignKey="register_states_register_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_states"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="code" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="autorized_complementary_capacities" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="5" name="establishment_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="registers_establishment_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="establishments"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="register_type_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="registers_register_type_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_types"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="registers_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="service_names" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('service_names_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="service_name_id" foreignKey="establishment_service_offers_service_name_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="establishment_service_offers"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="name" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="service_names_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="states" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('states_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="state_id" foreignKey="register_states_state_id_foreign" implied="false" onDeleteCascade="true" schema="public" table="register_states"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="created_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="updated_at" nullable="true" remarks="" size="22" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="name" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="states_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+   </tables>
+</database>
